@@ -8,8 +8,11 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+
+import VueRouter from 'vue-router'
 import Vue from "vue";
 import HeaderComponent from "./components/HeaderComponent";
+import TaskListComponent from "./components/TaskListComponent";
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -26,6 +29,18 @@ import HeaderComponent from "./components/HeaderComponent";
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('header-component', 'HeaderComponent');
 
+Vue.use(VueRouter);
+
+const router = new VueRouter({
+    mode: 'history',
+    routes: [
+        {
+            path: '/tasks',
+            name: 'task.list',
+            component: TaskListComponent
+        },
+    ]
+});
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -34,6 +49,7 @@ Vue.component('header-component', 'HeaderComponent');
 
 const app = new Vue({
     el: '#app',
+    router,
     components: {
         HeaderComponent,
     }
