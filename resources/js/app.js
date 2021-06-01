@@ -13,6 +13,9 @@ import VueRouter from 'vue-router'
 import Vue from "vue";
 import HeaderComponent from "./components/HeaderComponent";
 import TaskListComponent from "./components/TaskListComponent";
+import TaskCreateComponent from "./components/TaskCreateComponent";
+import TaskShowComponent from "./components/TaskShowComponent";
+import TaskEditComponent from "./components/TaskEditComponent";
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -38,6 +41,23 @@ const router = new VueRouter({
             path: '/tasks',
             name: 'task.list',
             component: TaskListComponent
+        },
+        {
+            path: '/create',
+            name: 'task.create',
+            component: TaskCreateComponent
+        },
+        {
+            path: '/:taskId',
+            name: 'task.show',
+            component: TaskShowComponent,
+            props: true
+        },
+        {
+            path: '/tasks/:taskId/edit',
+            name: 'task.edit',
+            component: TaskEditComponent,
+            props: true
         },
     ]
 });
